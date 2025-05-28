@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GM informatica - Computadores e Tecnologia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #101d53 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.3)); }
+            to { filter: drop-shadow(0 0 30px rgba(118, 75, 162, 0.5)); }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 300;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+            text-align: center;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .card h2 {
+            color: #3987d6;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .features-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .features-list li::before {
+            content: '⚡';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .highlight-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .highlight-section h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .tech-item {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tech-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🖥️ GM informatica</h1>
+            <p class="subtitle">Explore o universo da tecnologia computacional</p>
+        </header>
+
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon">💻</div>
+                <h2>Hardware</h2>
+                <p>O hardware é a parte física do computador, composta por todos os componentes tangíveis que permitem o funcionamento da máquina.</p>
+                <ul class="features-list">
+                    <li><strong>Processador (CPU):</strong> Cérebro do computador, executa instruções</li>
+                    <li><strong>Memória RAM:</strong> Armazenamento temporário de dados</li>
+                    <li><strong>Placa-mãe:</strong> Conecta todos os componentes</li>
+                    <li><strong>Armazenamento:</strong> HD/SSD para dados permanentes</li>
+                    <li><strong>Placa de Vídeo:</strong> Processa gráficos e imagens</li>
+                    <li><strong>Fonte de Alimentação:</strong> Fornece energia</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🖱️</div>
+                <h2>Periféricos</h2>
+                <p>Dispositivos externos que se conectam ao computador para entrada e saída de dados, expandindo suas funcionalidades.</p>
+                <ul class="features-list">
+                    <li><strong>Mouse:</strong> Dispositivo de apontamento</li>
+                    <li><strong>Teclado:</strong> Entrada de texto e comandos</li>
+                    <li><strong>Monitor:</strong> Exibição visual de informações</li>
+                    <li><strong>Impressora:</strong> Impressão de documentos</li>
+                    <li><strong>Alto-falantes:</strong> Saída de áudio</li>
+                    <li><strong>Webcam:</strong> Captura de vídeo</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">⚙️</div>
+                <h2>Sistemas Operacionais</h2>
+                <p>Software fundamental que gerencia recursos do hardware e fornece uma interface entre o usuário e a máquina.</p>
+                <ul class="features-list">
+                    <li><strong>Windows:</strong> Sistema mais popular para desktop</li>
+                    <li><strong>macOS:</strong> Sistema exclusivo da Apple</li>
+                    <li><strong>Linux:</strong> Sistema open-source e personalizável</li>
+                    <li><strong>Android:</strong> Sistema para dispositivos móveis</li>
+                    <li><strong>iOS:</strong> Sistema móvel da Apple</li>
+                    <li><strong>Chrome OS:</strong> Sistema baseado na web</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📱</div>
+                <h2>Softwares</h2>
+                <p>Programas e aplicações que executam tarefas específicas, desde produtividade até entretenimento e desenvolvimento.</p>
+                <ul class="features-list">
+                    <li><strong>Navegadores:</strong> Chrome, Firefox, Safari</li>
+                    <li><strong>Editores de Texto:</strong> Word, Google Docs</li>
+                    <li><strong>Antivírus:</strong> Proteção contra malware</li>
+                    <li><strong>Media Players:</strong> VLC, Spotify</li>
+                    <li><strong>Jogos:</strong> Entretenimento digital</li>
+                    <li><strong>Ferramentas de Design:</strong> Photoshop, GIMP</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="highlight-section">
+            <h2>🚀 Tecnologias Emergentes</h2>
+            <p>Explore as tecnologias que estão moldando o futuro da computação</p>
+            <div class="tech-grid">
+                <div class="tech-item pulse">
+                    <h3>🤖 IA</h3>
+                    <p>Inteligência Artificial</p>
+                </div>
+                <div class="tech-item">
+                    <h3>☁️ Cloud</h3>
+                    <p>Computação em Nuvem</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🔐 Blockchain</h3>
+                    <p>Tecnologia Distribuída</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🥽 VR/AR</h3>
+                    <p>Realidade Virtual</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🌐 IoT</h3>
+                    <p>Internet das Coisas</p>
+                </div>
+                <div class="tech-item">
+                    <h3>⚡ 5G</h3>
+                    <p>Conectividade Rápida</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="highlight-section">
+            <h2>💡 Dicas Importantes</h2>
+            <p>Para manter seu computador funcionando perfeitamente:</p>
+            <div style="text-align: left; margin-top: 1rem;">
+                <p><strong>🔧 Manutenção Regular:</strong> Mantenha seu sistema atualizado e faça limpezas periódicas</p>
+                <p><strong>🛡️ Segurança:</strong> Use antivírus confiável e faça backups regulares</p>
+                <p><strong>🌡️ Temperatura:</strong> Monitore a temperatura dos componentes</p>
+                <p><strong>📊 Performance:</strong> Gerencie programas que iniciam automaticamente</p>
+            </div>
+        </div>
+
+        <footer>
+            <h3>🌟 GM informatica - Seu Guia Tecnológico</h3>
+            <p>Explore, aprenda e domine o mundo da tecnologia computacional!</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: #5a37d6;">
+                Mantenha-se sempre atualizado com as últimas tendências em tecnologia
+                
+            </p>
+            <p>contato (84)98777-3204</p>
+        </footer>
+    </div>
+
+    <script>
+        // Adiciona interatividade aos cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.background = 'rgba(255, 255, 255, 1)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.background = 'rgba(255, 255, 255, 0.95)';
+            });
+        });
+
+        // Animação nos itens de tecnologia
+        document.querySelectorAll('.tech-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1.05)';
+                }, 100);
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 200);
+            });
+        });
+
+        // Efeito de scroll suave para elementos
+        window.addEventListener('scroll', () => {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                
+                if (isVisible) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('TechWorld carregado com sucesso! 🚀');
+        });
+    </script>
+</body>
+</html>
